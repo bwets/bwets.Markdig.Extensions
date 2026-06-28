@@ -36,7 +36,10 @@ jobs:
   # using NuGet Trusted Publishing (OIDC) in the "release" environment.
   publish:
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # Publish on pushes to main and on manual runs (but never on pull requests).
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     environment: release
     permissions:
