@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.gitignore" />
+    <File Path="../README.md" />
+    <File Path="../LICENSE" />
+  </Folder>
+  <Project Path="bwets.Markdig.Extensions/bwets.Markdig.Extensions.csproj" />
+</Solution>
