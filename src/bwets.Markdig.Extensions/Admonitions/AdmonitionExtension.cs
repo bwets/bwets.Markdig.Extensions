@@ -18,6 +18,13 @@ public sealed class AdmonitionExtension : IMarkdownExtension
         {
             pipeline.BlockParsers.Insert(0, new MkDocsAdmonitionParser());
         }
+
+        // Must precede the built-in QuoteBlockParser so "> [!type]" is caught before it is treated
+        // as an ordinary blockquote.
+        if (!pipeline.BlockParsers.Contains<GitHubCalloutParser>())
+        {
+            pipeline.BlockParsers.Insert(0, new GitHubCalloutParser());
+        }
     }
 
     public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)

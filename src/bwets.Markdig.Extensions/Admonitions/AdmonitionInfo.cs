@@ -91,7 +91,7 @@ internal static class AdmonitionInfo
         return -1;
     }
 
-    private static bool IsWord(string s)
+    internal static bool IsWord(string s)
     {
         if (s.Length == 0 || !char.IsLetter(s[0]))
         {

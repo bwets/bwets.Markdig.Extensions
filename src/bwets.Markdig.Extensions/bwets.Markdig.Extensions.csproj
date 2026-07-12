@@ -21,8 +21,8 @@
     <PackageId>bwets.Markdig.Extensions</PackageId>
     <Authors>bwets</Authors>
     <Company>bwets</Company>
-    <Description>Modular Markdig extensions: admonitions (Docusaurus + MkDocs), mermaid diagrams, and code syntax highlighting (highlight.js), with self-contained HTML assets that can be inlined or served as files.</Description>
-    <PackageTags>markdig;markdown;admonitions;mermaid;highlightjs;syntax-highlighting;docusaurus;mkdocs;callout</PackageTags>
+    <Description>Modular Markdig extensions: admonitions (Docusaurus + MkDocs + GitHub/Obsidian callouts), mermaid diagrams, code syntax highlighting (highlight.js), Obsidian-style wiki links, hidden comments, and inline tags — with self-contained HTML assets that can be inlined or served as files.</Description>
+    <PackageTags>markdig;markdown;admonitions;callout;mermaid;highlightjs;syntax-highlighting;docusaurus;mkdocs;obsidian;wikilinks;tags;github-alerts</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/bwets/bwets.Markdig.Extensions</PackageProjectUrl>

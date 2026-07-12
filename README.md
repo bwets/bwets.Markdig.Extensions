@@ -3,7 +3,7 @@
 [![build](https://github.com/bwets/bwets.Markdig.Extensions/actions/workflows/build.yml/badge.svg)](https://github.com/bwets/bwets.Markdig.Extensions/actions/workflows/build.yml)
 [![NuGet](https://img.shields.io/nuget/v/bwets.Markdig.Extensions.svg)](https://www.nuget.org/packages/bwets.Markdig.Extensions/)
 
-Modular [Markdig](https://github.com/xoofx/markdig) extensions for rendering rich Markdown to HTML — **admonitions**, **mermaid diagrams**, and **code syntax highlighting** — where each capability is independently activatable and ships its own self-contained CSS/JS assets.
+Modular [Markdig](https://github.com/xoofx/markdig) extensions for rendering rich Markdown to HTML — **admonitions** (incl. GitHub/Obsidian callouts), **mermaid diagrams**, **code syntax highlighting**, **Obsidian wiki links**, **hidden comments**, and **inline tags** — where each capability is independently activatable and ships its own self-contained CSS/JS assets.
 
 Targets **.NET Standard 2.0**.
 
@@ -25,8 +25,11 @@ using bwets.Markdig.Extensions;
 
 var pipeline = new MarkdownPipelineBuilder()
     .UseAdvancedExtensions()
-    .UseAdmonitions()   // Docusaurus ::: and MkDocs !!!/??? admonitions
-    .UseMermaid()       // ```mermaid blocks -> <pre class="mermaid">
+    .UseAdmonitions()        // Docusaurus :::, MkDocs !!!/???, and GitHub/Obsidian > [!note] callouts
+    .UseMermaid()            // ```mermaid blocks -> <pre class="mermaid">
+    .UseWikiLinks()          // [[Page]], [[Page|alias]], [[Page#Heading]], ![[image.png]]
+    .UseObsidianComments()   // hide %%…%% comments
+    .UseObsidianTags()       // #tag -> <span class="tag">
     .Build();
 
 var html = Markdown.ToHtml(markdown, pipeline);
@@ -80,9 +83,12 @@ foreach (var asset in features.Assets)
 
 | Feature | Activation | Notes |
 |---|---|---|
-| **Admonitions** | `UseAdmonitions()` | Docusaurus `:::type[title]…:::` and MkDocs `!!! type "title"` / collapsible `??? type` |
+| **Admonitions** | `UseAdmonitions()` | Docusaurus `:::type[title]…:::`, MkDocs `!!! type "title"` / collapsible `??? type`, and GitHub/Obsidian `> [!type] title` callouts (collapsible `> [!type]-`) |
 | **Mermaid** | `UseMermaid()` | `​```mermaid` → diagrams; bundles the all-in-one mermaid runtime |
 | **Syntax highlighting** | `UseSyntaxHighlighting(extendedLanguages)` | highlight.js; choose the common ~38 languages or the full ~190 + Razor |
+| **Wiki links** | `UseWikiLinks()` | `[[Page]]`, `[[Page\|alias]]`, `[[Page#Heading]]`; image embeds `![[img.png]]`, note embeds `![[Note]]` → links. Emitted as standard links with a `wikilink` class |
+| **Obsidian comments** | `UseObsidianComments()` | Hides inline `%%…%%` and `%%`-fenced comment blocks |
+| **Obsidian tags** | `UseObsidianTags()` | `#tag`, `#nested/tag` → `<span class="tag">`; ignores `C#` and all-numeric `#123` |
 
 See [`docs/`](docs/index.md) for details on each feature.
 

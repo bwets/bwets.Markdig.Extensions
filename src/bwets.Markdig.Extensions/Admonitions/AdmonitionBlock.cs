@@ -4,8 +4,9 @@ using Markdig.Syntax;
 namespace bwets.Markdig.Extensions.Admonitions;
 
 /// <summary>
-/// A parsed admonition / callout, produced from either Docusaurus (<c>:::type[title] ... :::</c>)
-/// or MkDocs (<c>!!! type "title"</c> / <c>??? type "title"</c> + indented body) syntax.
+/// A parsed admonition / callout, produced from Docusaurus (<c>:::type[title] ... :::</c>),
+/// MkDocs (<c>!!! type "title"</c> / <c>??? type "title"</c> + indented body), or
+/// GitHub/Obsidian (<c>&gt; [!type] title</c> blockquote) syntax.
 /// </summary>
 public sealed class AdmonitionBlock : ContainerBlock
 {
